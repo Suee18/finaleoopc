@@ -899,51 +899,145 @@ public class AdminGUI extends Application {
 
         primaryStage.setScene(ManageSupSc);
 
-        // BorderPane manageSuppliersLayout = new BorderPane();
-
-        // setBackgroundImage(manageSuppliersLayout);
-        // primaryStage.setTitle("Manage Suppliers");
-
-        // BorderPane.setAlignment(h1, javafx.geometry.Pos.TOP_RIGHT);
-        // manageSuppliersLayout.setTop(h1);
-        // manageSuppliersLayout.setPadding(new Insets(10, 10, 0, 0));
-
-        // Button viewListOfSuppliersButton = createMainMenuButton("Suppliers List",
-        // iconOn_viewListOfSuppliersButton);
-        // // ::Event Handle
-        // Button SuppliersTrendsButton = createMainMenuButton("SuppliersTrend",
-        // iconOn_SuppliersTrendsButton);
-        // // ::Event Handle
-
-        // HBox twoButtons = new HBox(10);
-        // twoButtons.setAlignment(Pos.CENTER);
-        // twoButtons.getChildren().addAll(viewListOfSuppliersButton,
-        // SuppliersTrendsButton);
-
-        // manageSuppliersLayout.setCenter(twoButtons);
-
-        // // manageSuppliersLayout.getChildren().addAll();
-        // Scene manageUsersScene = new Scene(manageSuppliersLayout, 800, 450);
-        // primaryStage.setScene(manageUsersScene);
-
-        // primaryStage.show();
-
     }
 
     // ::IDK aout the elements of the window so add it and event handle it
     private void showManageProductsScene() {
+
+        VBox MainAddP = new VBox(10); // 10 pixels spacing
+        MainAddP.setPadding(new Insets(20, 20, 20, 20)); // Set padding
+        Label Pnamelab = new Label("Product Name");
+        TextField Pname = new TextField();
+
+        Label pricelab = new Label("Product Price");
+        TextField price = new TextField();
+
+        Button confirmAddP = new Button("Confirm");
+        Button managepanelAddP = new Button("Home");
+
+        // Add nodes to VBox
+        MainAddP.getChildren().addAll(Pnamelab, Pname, pricelab, price, confirmAddP, managepanelAddP);
+
+        // Set up the scene
+        Scene AddPSc = new Scene(MainAddP, 300, 250);
+
+        confirmAddP.setOnAction(e -> {
+            String productName = Pname.getText();
+            String priceText = price.getText();
+
+            VBox content = new VBox(10); // Use an appropriate layout container
+
+            if (productName.isEmpty()) {
+                content.getChildren().addAll(new Label("Please enter a product name"), Pname, pricelab, price,
+                        confirmAddP, managepanelAddP);
+            } else if (priceText.isEmpty()) {
+                content.getChildren().addAll(Pnamelab, Pname, pricelab, price, new Label("Price cannot be zero"),
+                        confirmAddP, managepanelAddP);
+            } else {
+                try {
+                    int pprice = Integer.parseInt(priceText);
+                    String pname = productName;
+                    admin.addProducts(pname, pprice);
+                    content.getChildren().addAll(new Label("Product added successfully"), Pnamelab, new TextField(),
+                            pricelab, new TextField(), confirmAddP, managepanelAddP);
+                } catch (NumberFormatException ex) {
+                    content.getChildren().addAll(Pnamelab, Pname, pricelab, price, new Label("Invalid price format"),
+                            confirmAddP, managepanelAddP);
+                }
+            }
+
+            MainAddP.getChildren().setAll(content);
+        });
+
+        // search product scene and handeling
+        Label searchLabel = new Label("Enter Product Name or ID:");
+        TextField searchField = new TextField();
+        Button confirmButton = new Button("Search");
+
+        // Create a result label to display the search result
+        Label resultLabel = new Label();
+
+        // Handle search button click
+        confirmButton.setOnAction(e -> {
+            String searchText = searchField.getText();
+            Products search = admin.searchProducts(searchText, searchText);
+            resultLabel.setText("name: " + search.productName + "\n" + "price:" + search.price + "\n"
+                    + "product serial number:" + search.PID);
+        });
+
+        // Create layout
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(searchLabel, searchField, confirmButton, resultLabel);
+        layout.setPadding(new Insets(10));
+
+        // Create scene
+        Scene SearchPSc = new Scene(layout, 300, 150);
+
+        // Remove product scene and handeling
+
+        VBox mainRemoveP = new VBox(10); // 10 pixels spacing
+        mainRemoveP.setPadding(new Insets(20, 20, 20, 20)); // Set padding
+
+        Label nameLabel = new Label("Product Name or Serial Number");
+        TextField nameOrSerialField = new TextField();
+
+        Button confirmRemoveP = new Button("Confirm");
+        Button managePanelRemoveP = new Button("Home");
+
+        // Add nodes to VBox
+        mainRemoveP.getChildren().addAll(nameLabel, nameOrSerialField, confirmRemoveP, managePanelRemoveP);
+
+        // Set up the scene
+        Scene removePScene = new Scene(mainRemoveP, 300, 250);
+
+        // Set up action for the confirm button
+        confirmRemoveP.setOnAction(e -> {
+            String nameOrSerial = nameOrSerialField.getText();
+
+            // Calling remove method
+            boolean removed = admin.removeProducts(nameOrSerial, nameOrSerial);
+
+            // Clear existing labels and add the result label
+            mainRemoveP.getChildren().clear();
+
+            Label resultLabel2 = new Label();
+            if (removed) {
+                // Product successfully removed
+                resultLabel2.setText("Product removed successfully.");
+            } else {
+                // Product not found or removal failed
+                resultLabel2.setText("Product not found or removal failed.");
+            }
+
+            mainRemoveP.getChildren().addAll(resultLabel2, managePanelRemoveP);
+        });
 
         FlowPane manageProductssElements = new FlowPane(Orientation.HORIZONTAL, 10, 10);
 
         setBackgroundImage(manageProductssElements);
         primaryStage.setTitle("Mange Products");
 
+        Button addProuctb = createPurpleButton("Add User");
+        addProuctb.setOnAction(e -> {
+            primaryStage.setScene(AddPSc);
+        });
+
+        Button removeProductP = createPurpleButton("Remove User");
+        removeProductP.setOnAction(e -> {
+            primaryStage.setScene(removePScene);
+        });
+
+        Button searchProductP = createPurpleButton("Search for User");
+        searchProductP.setOnAction((e -> {
+            primaryStage.setScene(SearchPSc);
+        }));
+
         // right top corner home button
         Button h2 = HOME();
         h2.setOnAction(e -> openAdminMainMenu());
         FlowPane.setMargin(h2, new Insets(10, 0, 0, 710));
 
-        manageProductssElements.getChildren().addAll(h2);
+        manageProductssElements.getChildren().addAll(h2, addProuctb, removeProductP, searchProductP);
         Scene manageProductsScene = new Scene(manageProductssElements, 800, 450);
         primaryStage.setScene(manageProductsScene);
         manageProductssElements.getChildren().addAll(h2);
@@ -1033,7 +1127,7 @@ public class AdminGUI extends Application {
         double imageHeight = 150;
         Button tansButton = new Button(buttonTitle);
 
-        tansButton.setStyle("-fx-background-color: rgba(100, 100, 100, 0.2);" + "-fx-text-fill: black;"
+        tansButton.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4);" + "-fx-text-fill: white;"
                 + "-fx-font-size: 18px;" + "-fx-font-family:  Open Sans;");
         tansButton.setMinSize(buttonWidth, buttonHeight);
         tansButton.setMaxSize(buttonWidth, buttonHeight);
