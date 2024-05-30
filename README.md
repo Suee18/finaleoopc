@@ -25,18 +25,18 @@
 > - Calculate Payment.
 >
 > **🙎🏻‍♂️Customer Side**
-> -View products
-> -Add, remove products from the cart.
-> -Cart is populated through session until confirmed.
-> -View all his orders’ details.
-> -Rate the orders.
+> - View products
+> - Add, remove products from the cart.
+> - Cart is populated through session until confirmed.
+> - View all his orders’ details.
+> - Rate the orders.
 
 
 
 
 ## 📨 Contact us
 
-Feel free to contact us through  [e-mail]([Send me an email](mailto:salmaaasherif22@gmail.com?subject=Inquiry%3A%20OOP%20Clothes%20management%20system%20project)
+Feel free to [send me an e-mail](mailto:salmaaasherif22@gmail.com?subject=Inquiry%3A%20OOP%20Clothes%20management%20system%20project)
 
 
 ### 👩🏼‍💻🧑🏻‍💻Contributors: 
