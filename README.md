@@ -18,9 +18,11 @@
 >- View list of users
 > - Manage users details (Cashiers, customers: Add, edit, delete)
 > - view statistics  over a specific period of time: 
-> 1.Cashier with the maximum revenue,maximum no. of Orders.
-> 2.Supplier with the maximum revenue, maximum no. of Orders.
-> 3.Customer with the maximum revenue, maximum no. of Orders.
+  > 1. Cashier with the maximum revenue,maximum no. of Orders.
+>      
+  > 2. Supplier with the maximum revenue, maximum no. of Orders.
+> 
+  > 3. Customer with the maximum revenue, maximum no. of Orders.
 >
 > **👨🏻‍💼Cashier side**
 > - Create a Cart.
