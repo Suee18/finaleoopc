@@ -1,14 +1,15 @@
 # Clothes managemet system 
 > [!NOTE]
-> This project main idea is managing offline (on ground stores) and online stores. 
-> Implementation
-> Using object oriented programming:
-> GUI: JavaFX, CSS
-> Back-end: Java
+> This project main idea is managing offline (on ground stores) and online stores.
+> 
+> ### Implementation
+> __Using object oriented programming:__ 
+> GUI: `JavaFX`  `CSS`
+> Back-end: `Java`
 
 > [!IMPORTANT]
 > ### 👾 Features
-> -Log in - sign up system.
+> - Log in - sign up system.
 > 
 > **🧑🏻‍💻Admin side**
 > - Manage list of Suppliers and Pricing.
@@ -46,4 +47,4 @@ Feel free to [send me an e-mail](mailto:salmaaasherif22@gmail.com?subject=Inquir
 -  [@Nour Bassem](https://github.com/nour-bassem)
 -  [@Adam Walid](https://github.com/Adamwalidd)
   
->This repository is for the integrated app, so only one person pushed. You can find all of real time commits at this repo: [OOP-project-trials](https://github.com/Suee18/OOP_ClothesApp_Trials-)
+>This repository is for the integrated app. You can find all of real time commits at this repo: [OOP-project-trials](https://github.com/Suee18/OOP_ClothesApp_Trials-)
