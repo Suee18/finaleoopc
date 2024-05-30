@@ -3,8 +3,10 @@
 > This project main idea is managing offline (on ground stores) and online stores.
 > 
 > ### Implementation
-> __Using object oriented programming:__ 
+> __Using object oriented programming:__
+> 
 > GUI: `JavaFX`  `CSS`
+> 
 > Back-end: `Java`
 
 > [!IMPORTANT]
